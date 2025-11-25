@@ -16,3 +16,10 @@ for(let jour of tableau)
 }
 
 // tsc 03-exo.ts && node 03-exo.js
+
+// choisir la version de js
+// tsc 03-exo.ts --target es6 && node 03-exo.js
+
+// choisir et supprimer les commentaires
+// tsc 03-exo.ts --target es6 --removeComments && node 03-exo.js
+// tsc 03-exo.ts  --removeComments --target es6 && node 03-exo.js
