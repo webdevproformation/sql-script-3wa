@@ -25,9 +25,17 @@ tsc nom_fichier.ts --outFile nom_fichier_voulu.js
 tsc nom_fichier.ts --target es6 --removeComments  --outDir dossier --strict --watch
 ```
 
-```js
-const a = 10 ;
+# exo
 
-a.valeur = "bonjour" ; 
+
+```txt
+
+    créer un nouveau fichier 05-exo.ts
+    créer une variable phrase contenant le texte suivant : je découvre typescript et la transpilation en javascript
+    créer une fonction qui va permettre de retourner les 4 premiers mots de la phrase et les afficher dans la console
+
+    compiler votre fichier typescript en version 3 de Javascript, dans le dossier dist
+    compiler votre fichier typescript en version 6 de Javascript, supprimer les commentaires dans le fichier généré
+    compiler votre fichier typescript en version 6 de Javascript, forcer le typage des paramètres de la fonction et cas d’erreur lors de la compilation aucun fichier .js ne devra être généré. Le fichier compilé devra s’appeler correction.js
 
 ```
