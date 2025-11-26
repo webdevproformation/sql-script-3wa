@@ -48,7 +48,7 @@ const h : KeyFormation = "duree"
 const i : KeyFormation = "nom"
 
 
-// crcéer le fichier 11-exo.ts
+// créer le fichier 11-exo.ts
 // ce fichier contient un type qui s'appelle Exo
 // ce type contient 4 propriete
 // etudiant qui est un objet de ayant 2 propriété nom / prénom
