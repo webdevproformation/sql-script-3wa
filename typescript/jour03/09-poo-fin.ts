@@ -69,12 +69,11 @@ e.get_information()
  * VW 
  * Renault 
  * 
- * 
  * ces deux class doivent implémenter les méthodes abstraites du parent Vehicule
  * 
  * pour la class VW elle a deux propriétés privée prix et nom 
  * utiliser les setter et getter pour les initialiser
  * 
- * pour la class Renaul elle a un constructeur qui va initialiser deux propriétés marque et propriétaire
+ * pour la class Renault elle a un constructeur qui va initialiser deux propriétés marque et propriétaire
  * 
  */
