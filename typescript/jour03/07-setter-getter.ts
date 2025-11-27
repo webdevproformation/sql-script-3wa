@@ -43,6 +43,6 @@ console.log(b.prix)  // en train d'exécuter le getter de la class
  * la référence est obligatoirement un chaine de caractère qui contient au moins 5 lettres 
  * la prix est obligatoirement un chiffre positif 
  * mettre en place cette logique dans les setters
- * si la logique n'est respecter lancer une exception qui donne plus d'informations au développeur sur l'erreur rencontrée 
+ * si la logique n'est pas respectée lancer une exception qui donne plus d'informations au développeur sur l'erreur rencontrée 
  * 
  */
