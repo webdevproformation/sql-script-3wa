@@ -35,3 +35,14 @@ const resultat2 = getName({ prix : 10, nom : "PS4" } , "nom")
 const resultat3 = getName({ prix : 10, nom : "PS4" } , "prix")
 const resultat4 = getName({ prix : 10, nom : "PS4" , description : "" } , "description")
 
+/**
+créer le fichier 04-exo.ts
+
+ce fichier contient une fonction générique "pluck" avec contrainte qui doit réaliser le traitement suivant 
+
+
+const people = [{name: 'Alice', age: 30}, {name: 'Bob', age: 25}];
+console.log(pluck(people, 'name')); // ['Alice', 'Bob']
+
+ * 
+ */
