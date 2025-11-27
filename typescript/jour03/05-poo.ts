@@ -76,5 +76,10 @@ cette class contient 2 propriétés
 
     solde 
         cette méthode permet de savoir quelle est le solde du compte 
- * 
+
+    bonus 
+
+        - rendre les propriétés nom_proprietaire_compte et solde_compte privée
+
+        * 
  */
