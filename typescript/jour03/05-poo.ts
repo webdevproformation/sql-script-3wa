@@ -55,3 +55,26 @@ const c = new C( "a", 1 , true );
 c.a 
 c.b 
 c.c 
+
+
+/**
+créer le fichier 06-exo.ts
+créer dans ce fichier une class CompteBancaire 
+cette class contient 2 propriétés 
+    nom_proprietaire_compte => texte
+    solde_compte  => chiffre
+
+    initialiser ces deux valeurs dans le constructeur de la class 
+
+    en plus du contructeur vous devez créer plusieurs méthodes
+
+    depot avec un paramètre (montant)
+        cette methode permet de faire augmenter le montant du solde
+
+    retrait avec un paramètre (montant)
+        cette methode permet de réduire le montant du solde
+
+    solde 
+        cette méthode permet de savoir quelle est le solde du compte 
+ * 
+ */
