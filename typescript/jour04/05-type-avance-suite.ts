@@ -29,3 +29,18 @@ type BootstrapClass = `${Balise}-${Taille}`
 // alert-sm
 // alert-lg
 // alert-bg
+
+// créer le fichier 06-exo.ts
+/**
+ * Créer un type qui extrait la partie après un tiret :
+
+type AfterDash<T> = // à compléter
+
+résultat attendu 
+
+type A = AfterDash<"user-42">; // "42"
+type B = AfterDash<"item-abc">; // "abc"
+type C = AfterDash<"hello">;    // never (pas de tiret)
+
+ * 
+ */
