@@ -15,6 +15,8 @@
 - enlever les commentaires (le plus compact)
 - mode strict 
 
+# générer le fichier tsconfig.json
+
 ```sh
 cd jour04-html
 tsc --init
