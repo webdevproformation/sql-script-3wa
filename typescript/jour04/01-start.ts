@@ -94,3 +94,31 @@ type RetourFonctionRequete = ReturnType<typeof requete>
 RetourFonctionRequete = Array<number | boolean>
  * 
  */
+
+/*
+cas pratique créer le fichier 02-exo.ts
+
+1 créer un type Article contienant 5 propriétés
+
+titre  texte
+auteur text
+contenu text
+date_creation date
+etat boolean qui est facultatif
+
+    créer le type ArticleSynthese
+
+qui contient uniquement titre et date_creation
+
+    créer le type ArticleTraducteur
+
+rendre facultatif contenu
+rendre obligatoire (readonly titre )
+rendre obligatoire (readonly etat )
+
+    créer un nouveau type il doit avoir les clés suivantes
+
+article => type Article
+categorie => string 
+etags => tableau de string 
+*/
