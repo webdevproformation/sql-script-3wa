@@ -30,3 +30,13 @@ type ArticleComplet = Record<KeyArticleComplet , ValeurArticleComplet>
     categorie : string ,
     etags : Array<string>
 } */
+
+   /*  document.querySelector("h1").classList.add("toto")
+    document.querySelector("h1").id = "titi"
+    document.querySelector("h1").style["font-size"] = "15px"
+
+    $("h1").addClass("toto")
+           .attr("id", "titi")
+           .css({ "font-size" : 15 })
+
+    $.ajax({}) */
