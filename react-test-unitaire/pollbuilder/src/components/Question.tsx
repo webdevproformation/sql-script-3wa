@@ -8,6 +8,7 @@ export const Question: React.FC<{
         <div>
             <input value={ question.title } onChange={() => {}}  />
             {/** le champ input va récupérer la props  */}
+            <button>Ajouter une réponse</button>
         </div>
     )
 } 

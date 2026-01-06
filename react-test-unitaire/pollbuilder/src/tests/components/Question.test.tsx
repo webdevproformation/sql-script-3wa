@@ -25,4 +25,13 @@ describe("test component Question", function(){
         expect(returnValue).toBeInTheDocument()
     })
 
+    it("should display a button" , function(){
+        setup();
+        // permet de récupérer les élements de types bouton
+        const returnValue = screen.getByRole("button", {
+            name : "Ajouter une réponse"
+        })
+        expect(returnValue).toBeInTheDocument()
+    })
+
 })
