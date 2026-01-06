@@ -1,5 +1,6 @@
 import { Question } from "../../components/Question";
 import { render , screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 
 // render qui vont simuler le Virtual DOM de React
 // screen 
