@@ -24,7 +24,7 @@ tsc --init
 
 
 
-# lancer le traducteur 
+# lancer le traducteur (créer le dossier dist avec)
 
 ```sh
 cd jour04-html
