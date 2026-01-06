@@ -4,7 +4,7 @@ import { PollModel } from "../model/poll-model"
 export const Question: React.FC<{
     question : PollModel.Question,
     onChange : ( id : string , value : string ) => void // ajouter les props dans le type de retour
-}> = ({question , onChange}) => { 
+}> = ({question , onChange }) => { 
     return (
         <div>
             <input value={ question.title } onChange={
