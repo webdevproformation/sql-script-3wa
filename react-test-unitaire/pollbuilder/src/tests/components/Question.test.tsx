@@ -9,17 +9,20 @@ describe("test component Question", function(){
     // vérifier qu'il contient bien le texte Questionnaire
 
     const setup = () => {
-        render(<Question />)
+        render(<Question 
+        question={{ 
+            title : "quel est votre langage préféré ?"
+        }}/>)
     }
 
-    it("should display texte Questionnaire" , function(){
-
+    it("should display texte send by a props" , function(){
         setup();
-        const returnValue = screen.getByDisplayValue("Questionnaire")
+        // getByDisplayValue vient chercher une valeur dans un formulaire dans un champ 
+        // input textarea
+        const returnValue = screen.getByDisplayValue("quel est votre langage préféré ?")
 
         // assertion
         expect(returnValue).toBeInTheDocument()
-
     })
 
 })
