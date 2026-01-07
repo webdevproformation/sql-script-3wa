@@ -19,3 +19,5 @@ export const Answer : React.FC<{
         </div>
     )
 } 
+
+// <Anwser title="reponse 1" onChange={() => { addCommentaireMock("1") }} onRemove={() => {} }  />
