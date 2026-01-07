@@ -13,11 +13,17 @@ describe("test component Question", function(){
     // exécuter notre composant Question
     // vérifier qu'il contient bien le texte Questionnaire
 
-    // il nous manque le state => demain matin !! bonne soirée
+    
     const question : PollModel.Question = {
         id : "1",
-        title : "quel est votre langage préféré ?"
+        title : "quel est votre langage préféré ?",
+        answers : [
+            { id : "1" , title : "Typescript" },
+            { id : "2" , title : "Javascript" }
+        ]
     }
+    
+    // il nous manque le state => demain matin !! bonne soirée
     const Wrapper = () => {
         // garder un état entre chaque input de notre composant
         const [title, setTitle] = useState(question.title);
@@ -69,5 +75,16 @@ describe("test component Question", function(){
         expect(onChangeMock).toHaveBeenCalledWith("1", "Quel est ton framework préféré")
 
     })
+
+    it("should display all answers", function(){
+        setup();
+        // il y a un input qui contient la propriété value="Typescript"
+        expect(screen.getByDisplayValue("Typescript")).toBeInTheDocument();
+        expect(screen.getByDisplayValue("Javascript")).toBeInTheDocument();
+        // il y a deux inputs qui ont l'attribut placeholder="Réponse possible"
+        expect(screen.getAllByPlaceholderText("Réponse possible")).toHaveLength(2);
+    });
+
+    
 
 })
