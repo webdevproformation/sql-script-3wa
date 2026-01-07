@@ -8,11 +8,19 @@ import { useState } from "react"
 // screen 
 
 describe("test component Question", function(){
+
+    type PropsQuestion = {
+        questions : PollModel.Question ,
+        onChange : (id : string , title : string) => void ,
+        addAnswer : (id : string) => void 
+    }
+
+
     const onChangeMock = jest.fn() ; // fonction va simuler l'utilisation de la onChange du Virtual DOM
+    const addAnswerMock = jest.fn() ; 
 
     // exécuter notre composant Question
     // vérifier qu'il contient bien le texte Questionnaire
-
     
     const question : PollModel.Question = {
         id : "1",
@@ -24,7 +32,9 @@ describe("test component Question", function(){
     }
     
     // il nous manque le state => demain matin !! bonne soirée
-    const Wrapper = () => {
+    // Partial<T> type utilitaire de typescript 
+    // https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype
+    const Wrapper = (props ?: Partial<PropsQuestion>) => {
         // garder un état entre chaque input de notre composant
         const [title, setTitle] = useState(question.title);
         const localQuestion = { ...question , title };
@@ -34,10 +44,11 @@ describe("test component Question", function(){
                 setTitle(value)
                 onChangeMock(id, value)
             }}
+            addAnswer={props?.addAnswer ?? (() => {})}
         />
     }
-    const setup = () => {
-        render(<Wrapper/>)
+    const setup = (props ?: Partial<PropsQuestion>) => {
+        render(<Wrapper {...props}/>)
     }
 
     it("should display texte send by a props" , function(){
@@ -85,6 +96,17 @@ describe("test component Question", function(){
         expect(screen.getAllByPlaceholderText("Réponse possible")).toHaveLength(2);
     });
 
-    
+    it("should add Anwser on click", async function(){
+
+        setup({ addAnswer : addAnswerMock });
+        // récupérer le bouton
+        const btnAddAnswser = screen.getByRole("button" , { name : "Ajouter une réponse"})
+
+        // cliquer dessus
+        await userEvent.click(btnAddAnswser);
+        expect(addAnswerMock).toHaveBeenCalledWith("1")
+
+    });
+
 
 })

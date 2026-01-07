@@ -6,7 +6,11 @@ export const Question: React.FC<{
     question : PollModel.Question,
     onChange : ( id : string , value : string ) => void // ajouter les props dans le type de retour
     addAnswer : ( id : string ) => void
-}> = ({question , onChange }) => { 
+}> = ({question , onChange , addAnswer }) => { 
+    function ajouter_reponse(e: React.FormEvent<HTMLButtonElement>){
+        e.preventDefault();
+        addAnswer(question.id)
+    }
     return (
         <div>
             <input 
@@ -22,7 +26,10 @@ export const Question: React.FC<{
             }
 
             {/** le champ input va récupérer la props  */}
-            <button>Ajouter une réponse</button>
+            <button 
+                onClick={ajouter_reponse}>
+                    Ajouter une réponse
+            </button>
         </div>
     )
 } 
