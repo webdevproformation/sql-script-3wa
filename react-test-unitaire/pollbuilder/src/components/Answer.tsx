@@ -4,13 +4,14 @@ import type React from "react"
 
 export const Answer : React.FC<{
     title : string,
-    onRemove : (e : React.FormEvent<HTMLButtonElement>) => void
-}> = ({ title , onRemove }) => {
+    onRemove : (e : React.FormEvent<HTMLButtonElement>) => void,
+    onChange : (title : string) => void
+}> = ({ title , onRemove , onChange }) => {
     return (
         <div>
             <input 
                 value={title} 
-                onChange={() => {}} 
+                onChange={(e) => onChange( e.target.value ) } 
                 placeholder="Réponse possible"
             />
             {/** https://emojipedia.org/cross-mark */}

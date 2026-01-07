@@ -6,8 +6,11 @@ export const Question: React.FC<{
     question : PollModel.Question,
     onChange : ( id : string , value : string ) => void // ajouter les props dans le type de retour
     addAnswer : ( id : string ) => void ,
-    removeAnswer : ( id: string , answerId : string ) => void 
-}> = ({question , onChange , addAnswer , removeAnswer }) => { 
+    removeAnswer : ( id: string , answerId : string ) => void ,
+    updateAnswer : ( id: string , answerId : string , value : string ) => void
+}> = ({question , onChange , addAnswer , removeAnswer , updateAnswer }) => { 
+
+
     function ajouter_reponse(e: React.FormEvent<HTMLButtonElement>){
         e.preventDefault();
         addAnswer(question.id)
@@ -21,6 +24,7 @@ export const Question: React.FC<{
                     ( e ) => onChange( question.id , e.target.value )
                 }  
             />
+    
             {
                 question.answers.map(function(answer){
                     return <Answer 
@@ -29,6 +33,9 @@ export const Question: React.FC<{
                                 onRemove={(e) =>  {
                                     e.preventDefault();
                                     removeAnswer(question.id , answer.id  )
+                                } }
+                                onChange={ ( title ) => {
+                                    updateAnswer(question.id , answer.id , title)
                                 } }
                             />
                 })

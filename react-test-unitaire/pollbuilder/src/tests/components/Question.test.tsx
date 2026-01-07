@@ -13,12 +13,14 @@ describe("test component Question", function(){
         questions : PollModel.Question ,
         onChange : (id : string , title : string) => void ,
         addAnswer : (id : string) => void ,
-        removeAnswer : (id : string , answserId : string) => void
+        removeAnswer : (id : string , answserId : string) => void,
+        updateAnswer : ( id: string , answerId : string , value : string ) => void
     }
 
     const onChangeMock = jest.fn() ; // fonction va simuler l'utilisation de la onChange du Virtual DOM
     const addAnswerMock = jest.fn() ; 
     const removeAnswerMock = jest.fn();
+    const updateAnswerMock = jest.fn() ;
 
     // exécuter notre composant Question
     // vérifier qu'il contient bien le texte Questionnaire
@@ -54,6 +56,12 @@ describe("test component Question", function(){
                     return prev.filter( (a) => a.id !== answerId )
                 })
                 removeAnswerMock(question.id , answerId)
+            }}
+            updateAnswer={( _ , answerId, value) => {
+                setAnswsers(function(prev){
+                    return prev.map( (a) => a.id === answerId ? {...a , title : value} : a ) 
+                })
+                updateAnswerMock(question.id , answerId , value)
             }}
         />
     }
@@ -134,5 +142,24 @@ describe("test component Question", function(){
         expect(screen.getAllByPlaceholderText("Réponse possible")).toHaveLength(1);
     });
 
+    it("should update Answser when type in form input", async function(){
 
-})
+        setup();
+
+        const firstInputAnswer = screen.getByDisplayValue("Typescript")
+
+        await userEvent.clear(firstInputAnswer);
+
+        await userEvent.type( firstInputAnswer, "Python");
+
+        // la fonction doublure doit avoir été exécutée avec les paramètres suivants
+        // "1" => id de la question
+        // "1" => id de la réponse
+        // "Python" => la nouvelle valeur saisie (via userEvent)
+        expect(updateAnswerMock).toHaveBeenCalledWith("1", "1" , "Python")
+
+        // il doit y avoir dans l'écran une balise input qui contient la valeur Python
+        expect(screen.getByDisplayValue("Python")).toBeInTheDocument();
+    });
+
+});
