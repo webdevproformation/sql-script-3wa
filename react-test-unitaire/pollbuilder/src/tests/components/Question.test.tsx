@@ -12,12 +12,13 @@ describe("test component Question", function(){
     type PropsQuestion = {
         questions : PollModel.Question ,
         onChange : (id : string , title : string) => void ,
-        addAnswer : (id : string) => void 
+        addAnswer : (id : string) => void ,
+        removeAnswer : (id : string , answserId : string) => void
     }
-
 
     const onChangeMock = jest.fn() ; // fonction va simuler l'utilisation de la onChange du Virtual DOM
     const addAnswerMock = jest.fn() ; 
+    const removeAnswerMock = jest.fn();
 
     // exécuter notre composant Question
     // vérifier qu'il contient bien le texte Questionnaire
@@ -36,8 +37,11 @@ describe("test component Question", function(){
     // https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype
     const Wrapper = (props ?: Partial<PropsQuestion>) => {
         // garder un état entre chaque input de notre composant
-        const [title, setTitle] = useState(question.title);
-        const localQuestion = { ...question , title };
+
+        const [title, setTitle] = useState(question.title); // RAM du navigateur (Base de données)
+        const [answers , setAnswsers] = useState(question.answers)
+        
+        const localQuestion = { ...question , title , answers };
         return <Question 
             question= { localQuestion }
             onChange={( id, value ) => { 
@@ -45,6 +49,12 @@ describe("test component Question", function(){
                 onChangeMock(id, value)
             }}
             addAnswer={props?.addAnswer ?? (() => {})}
+            removeAnswer={( _ , answerId) => {
+                setAnswsers(function(prev){
+                    return prev.filter( (a) => a.id !== answerId )
+                })
+                removeAnswerMock(question.id , answerId)
+            }}
         />
     }
     const setup = (props ?: Partial<PropsQuestion>) => {
@@ -106,6 +116,22 @@ describe("test component Question", function(){
         await userEvent.click(btnAddAnswser);
         expect(addAnswerMock).toHaveBeenCalledWith("1")
 
+    });
+
+    it("should remove Answer on click on btn Remove in Answer" , async function(){
+
+        setup({ removeAnswer : removeAnswerMock });
+
+        const btnRemoveInAnswser = screen.getAllByRole("button" , { name : /Supprimer la réponse/i })
+        const firstBtn = btnRemoveInAnswser[0] ;
+
+        await userEvent.click(firstBtn);
+
+        // normalement on a supprimer la 1ère réponse de la première question
+        expect(removeAnswerMock).toHaveBeenCalledWith("1" , "1");
+
+        // une seule Anwser visible dans le DOM
+        expect(screen.getAllByPlaceholderText("Réponse possible")).toHaveLength(1);
     });
 
 
