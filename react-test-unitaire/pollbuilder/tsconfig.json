@@ -6,6 +6,7 @@
     "moduleResolution": "bundler",
     "strict": true,
     "isolatedModules": true,
+    "esModuleInterop" : true , 
     "noEmit": true
   },
   "include": ["src", "jest.setup.ts", "jest.config.ts"],

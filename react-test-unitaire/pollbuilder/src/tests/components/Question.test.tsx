@@ -2,29 +2,36 @@ import { Question } from "../../components/Question";
 import { render , screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { PollModel } from "../../model/poll-model";
+import { useState } from "react"
 
 // render qui vont simuler le Virtual DOM de React
 // screen 
 
 describe("test component Question", function(){
-    const onChange = jest.fn() ; // fonction va simuler l'utilisation de la onChange du Virtual DOM
+    const onChangeMock = jest.fn() ; // fonction va simuler l'utilisation de la onChange du Virtual DOM
 
     // exécuter notre composant Question
     // vérifier qu'il contient bien le texte Questionnaire
 
     // il nous manque le state => demain matin !! bonne soirée
-    
-
     const question : PollModel.Question = {
         id : "1",
         title : "quel est votre langage préféré ?"
     }
-
+    const Wrapper = () => {
+        // garder un état entre chaque input de notre composant
+        const [title, setTitle] = useState(question.title);
+        const localQuestion = { ...question , title };
+        return <Question 
+            question= { localQuestion }
+            onChange={( id, value ) => { 
+                setTitle(value)
+                onChangeMock(id, value)
+            }}
+        />
+    }
     const setup = () => {
-        render(<Question 
-        question={question}
-        onChange={ onChange  } 
-        />)
+        render(<Wrapper/>)
     }
 
     it("should display texte send by a props" , function(){
@@ -59,7 +66,7 @@ describe("test component Question", function(){
         // a été exécutée avec le paramètre "1" et le paramètre "Quel est ton framework préféré"
 
         // onChange mocké doit avoir été exécutée avec 2 paramètres "1" et le texte "Quel est ton framework préféré"
-        expect(onChange).toHaveBeenCalledWith("1", "Quel est ton framework préféré")
+        expect(onChangeMock).toHaveBeenCalledWith("1", "Quel est ton framework préféré")
 
     })
 
