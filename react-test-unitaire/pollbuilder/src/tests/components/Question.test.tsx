@@ -58,6 +58,7 @@ describe("test component Question", function(){
         // notre fonction jest.fn() 
         // a été exécutée avec le paramètre "1" et le paramètre "Quel est ton framework préféré"
 
+        // onChange mocké doit avoir été exécutée avec 2 paramètres "1" et le texte "Quel est ton framework préféré"
         expect(onChange).toHaveBeenCalledWith("1", "Quel est ton framework préféré")
 
     })
