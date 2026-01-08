@@ -69,5 +69,56 @@ describe("test component CreatePoll", function(){
 
     });
 
+    it("should remove a question when click on button remove question" , async function(){
+        setup();
+
+        // ajouter une question
+        const btnAddQuestion = screen.getByRole("button", { name : "Ajouter une question"  })
+        await userEvent.click(btnAddQuestion);
+        await userEvent.click(btnAddQuestion);
+
+        const removeButtons = screen.getAllByRole("button", { name : /Supprimer la question/i })
+        await userEvent.click(removeButtons[0]);
+
+        const questionInputs = screen.getAllByPlaceholderText("Saisir la question")
+
+        expect(questionInputs).toHaveLength(1)
+    })
+
+
+    it("should remove an answer when click on button remove answer", async function(){
+        setup();
+
+        const btnAddQuestion = screen.getByRole("button", { name : "Ajouter une question"  })
+        await userEvent.click(btnAddQuestion);
+
+        // ajouter 2 réponses 
+        const btnAddAnswser = screen.getByRole("button", {name : "Ajouter une réponse" })
+        await userEvent.click(btnAddAnswser);
+        await userEvent.click(btnAddAnswser);
+
+        // supprimer la première réponse
+
+        const removeButtons = screen.getAllByRole("button" , {name : /Supprimer la réponse/i })
+        await userEvent.click(removeButtons[0]);
+
+        // verifier que l'on a qu'un seul input pour répondre
+        const answerInputs = screen.getAllByPlaceholderText("Réponse possible")
+        expect(answerInputs).toHaveLength(1)
+
+    });
+
+    it("should update title of poll", async function(){
+        setup();
+
+        const input = screen.getByPlaceholderText("Entrer le titre du sondage");
+
+        await userEvent.clear(input);
+
+        await userEvent.type(input , "Nouveau Sondage")
+
+        expect(input).toHaveValue("Nouveau Sondage")
+    })
+
 
 })

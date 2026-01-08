@@ -13,7 +13,9 @@ export const useCreatePoll = function(){
 
     function updateTitle(value : string):void
     {
-
+        setForm({ 
+            ...form , pollTitle : value
+        })
     }
 
     function addQuestion(){
@@ -28,7 +30,10 @@ export const useCreatePoll = function(){
 
     function removeQuestion(questionId: string):void
     {
-
+        setForm({ 
+            ...form , 
+            questions: form.questions.filter( (question) => question.id !==  questionId ) 
+        })
     }
 
     function updateQuestion(questionId: string , value : string ):void
@@ -58,7 +63,18 @@ export const useCreatePoll = function(){
 
     function removeAnswerFromQuestion ( id: string , answerId : string ) : void 
     {
-
+        setForm({
+            ...form ,
+            questions : form.questions.map((question) => {
+                if(question.id === id){
+                    return {
+                        ...question,
+                        answers : question.answers.filter((answer) => answer.id !== answerId)
+                    }
+                }
+                return question
+            })
+        })
     }
 
     function updateAnswerFromQuestion ( id: string , answerId : string , value : string ):  void

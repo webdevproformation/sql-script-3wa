@@ -8,12 +8,18 @@ export const Question: React.FC<{
     addAnswer : ( id : string ) => void ,
     removeAnswer : ( id: string , answerId : string ) => void ,
     updateAnswer : ( id: string , answerId : string , value : string ) => void
-}> = ({question , onChange , addAnswer , removeAnswer , updateAnswer }) => { 
+    removeQuestion  : (id : string) => void
+}> = ({question , onChange , addAnswer , removeAnswer , updateAnswer , removeQuestion }) => { 
 
 
     function ajouter_reponse(e: React.FormEvent<HTMLButtonElement>){
         e.preventDefault();
         addAnswer(question.id)
+    }
+
+    function supprimer_question(e: React.FormEvent<HTMLButtonElement>){
+        e.preventDefault();
+        removeQuestion(question.id)
     }
 
     return (
@@ -29,9 +35,16 @@ export const Question: React.FC<{
             {/** le champ input va récupérer la props  */}
             <button 
                 className="bg-red-500  text-white font-bold py-2 px-2 rounded 
-                        hover:bg-red-700"
+                        hover:bg-red-700 "
                 onClick={ajouter_reponse}>
                     Ajouter une réponse
+            </button>
+            <button 
+                onClick={supprimer_question}
+                aria-label="Supprimer la question"
+                className="ms-2"
+            >
+                ❌
             </button>
     
             {

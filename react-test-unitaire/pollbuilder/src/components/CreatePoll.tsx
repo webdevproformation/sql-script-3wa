@@ -12,9 +12,10 @@ export const CreatePoll : React.FC<{}> = () => {
                 type="text" 
                 value={ hook.form.pollTitle } 
                 placeholder="Entrer le titre du sondage" 
-                onChange={() => {}} 
+                onChange={( e ) => hook.updateTitle(e.target.value)} 
                 className="bg-gray-100 border border-gray-300 rounded py-2 px-4 focus:outilne-none focus:ring-2 focus:ring-indigo-400"
             />
+            
             
             {
                 hook.form.questions.map(function(question){
@@ -26,7 +27,9 @@ export const CreatePoll : React.FC<{}> = () => {
                                 addAnswer={hook.addAnswerToQuestion}
                                 removeAnswer={hook.removeAnswerFromQuestion}
                                 updateAnswer={hook.updateAnswerFromQuestion}
+                                removeQuestion={hook.removeQuestion}
                             />
+                            
                         </div>
                     )
                 })
