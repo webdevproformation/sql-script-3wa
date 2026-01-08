@@ -38,7 +38,17 @@ export const useCreatePoll = function(){
 
     function updateQuestion(questionId: string , value : string ):void
     {
-
+        setForm({
+            ...form , 
+            questions : form.questions.map((question) => {
+                if(question.id === questionId){
+                    return { 
+                        ...question , title : value
+                    }
+                }
+                return question
+            })
+        })
     }
 
 
@@ -79,7 +89,26 @@ export const useCreatePoll = function(){
 
     function updateAnswerFromQuestion ( id: string , answerId : string , value : string ):  void
     {
-
+        setForm({
+        ...form,
+        questions: form.questions.map((question) => {
+            if (question.id === id) {
+                return {
+                    ...question,
+                    answers: question.answers.map((answer) => {
+                        if (answer.id === answerId) {
+                            return {
+                                ...answer,
+                                title: value
+                            }
+                        }
+                        return answer;
+                    })
+                }
+            }
+            return question;
+        })
+    })
     }
 
     function submitPoll()
@@ -89,7 +118,18 @@ export const useCreatePoll = function(){
 
     function isSubmittable():boolean
     {
-        return false ;
+        // le formule est valide UNIQUEMENT si
+        // il y a un titre
+        // au moins 2 questions
+        // et pour chaque question 
+        // un titre
+        // au moins 2 réponses et chaque réponse doit avoir un contenu
+
+        return form.pollTitle !== "" &&
+               form.questions.length >= 2 &&
+               form.questions.every((question) => question.title !== "") &&
+               form.questions.every((question) => question.answers.length >= 2) &&
+               form.questions.every((question) => question.answers.every((answer) => answer.title !== "")) 
     }
 
     return {
