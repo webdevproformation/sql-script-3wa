@@ -17,7 +17,13 @@ export const useCreatePoll = function(){
     }
 
     function addQuestion(){
-        
+        setForm({ ...form , questions : [
+            ...form.questions, { 
+                id : String(crypto.randomUUID()),
+                title : '', 
+                answers : []
+            }
+        ] })
     }
 
     function removeQuestion(questionId: string):void
@@ -31,9 +37,23 @@ export const useCreatePoll = function(){
     }
 
 
-    function addAnswerToQuestion ( id : string ) : void 
+    function addAnswerToQuestion ( questionId : string ) : void 
     {
-
+        setForm({
+            ...form,
+            questions: form.questions.map((question) => {
+                if (question.id === questionId) {
+                    return {
+                        ...question,
+                        answers: [...question.answers, {
+                            id: crypto.randomUUID(),
+                            title: ""
+                        }]
+                    }
+                }
+                return question;
+            })
+        })
     }
 
     function removeAnswerFromQuestion ( id: string , answerId : string ) : void 

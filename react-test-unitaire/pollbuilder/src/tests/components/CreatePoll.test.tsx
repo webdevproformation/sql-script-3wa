@@ -29,11 +29,45 @@ describe("test component CreatePoll", function(){
         expect(btn).toBeInTheDocument();
     })
 
-    it("should contain btn add a Question disabled", function(){
+    it("should contain btn Créer Poll disabled", function(){
         setup();
-        const btn = screen.getByRole("button" , { name : "Ajouter une question" })
+        const btn = screen.getByRole("button" , { name : "Créer" })
         expect(btn).toBeDisabled()
     })
+
+
+    it("should add a question when click on button addQuestion" ,async function(){
+        setup();
+
+        const addButton = screen.getByRole("button" , {name : "Ajouter une question" })
+
+        await userEvent.click(addButton)
+        await userEvent.click(addButton)
+
+        const questionInputs = screen.getAllByPlaceholderText("Saisir la question")
+
+        expect(questionInputs).toHaveLength(2);
+
+    });
+
+
+    it("should add answer when click on add answer button" , async function(){
+        setup();
+
+        // ajouter une question
+        const btnAddQuestion = screen.getByRole("button", { name : "Ajouter une question"  })
+        await userEvent.click(btnAddQuestion);
+
+        // ajouter 2 réponses 
+        const btnAddAnswser = screen.getByRole("button", {name : "Ajouter une réponse" })
+        await userEvent.click(btnAddAnswser);
+        await userEvent.click(btnAddAnswser);
+
+        const answerInputs = screen.getAllByPlaceholderText("Réponse possible");
+
+        expect(answerInputs).toHaveLength(2);
+
+    });
 
 
 })

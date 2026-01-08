@@ -8,8 +8,9 @@ export const Answer : React.FC<{
     onChange : (title : string) => void
 }> = ({ title , onRemove , onChange }) => {
     return (
-        <div>
+        <div className="my-1">
             <input 
+                className="bg-gray-100 border border-gray-300 rounded py-2 px-4 focus:outilne-none focus:ring-2 focus:ring-indigo-400 me-2" 
                 value={title} 
                 onChange={(e) => onChange( e.target.value ) } 
                 placeholder="Réponse possible"

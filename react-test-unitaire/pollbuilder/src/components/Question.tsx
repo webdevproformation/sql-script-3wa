@@ -17,13 +17,22 @@ export const Question: React.FC<{
     }
 
     return (
-        <div>
-            <input 
-                value={ question.title } 
+        <div className="my-2">
+            <input
+                className="bg-gray-100 border border-gray-300 rounded py-2 px-4 focus:outilne-none focus:ring-2 focus:ring-indigo-400 me-2" 
+                value={ question.title }
+                placeholder="Saisir la question" 
                 onChange={
                     ( e ) => onChange( question.id , e.target.value )
                 }  
             />
+            {/** le champ input va récupérer la props  */}
+            <button 
+                className="bg-red-500  text-white font-bold py-2 px-2 rounded 
+                        hover:bg-red-700"
+                onClick={ajouter_reponse}>
+                    Ajouter une réponse
+            </button>
     
             {
                 question.answers.map(function(answer){
@@ -41,11 +50,7 @@ export const Question: React.FC<{
                 })
             }
 
-            {/** le champ input va récupérer la props  */}
-            <button 
-                onClick={ajouter_reponse}>
-                    Ajouter une réponse
-            </button>
+            
         </div>
     )
 } 
