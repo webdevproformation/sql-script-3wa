@@ -17,5 +17,23 @@ describe("test component CreatePoll", function(){
         expect(title).toBeInTheDocument();
     })
 
+    it("should contain input to add title of Poll" , function(){
+        setup();
+        const input = screen.getByPlaceholderText("Entrer le titre du sondage")
+        expect(input).toBeInTheDocument();
+    })
+
+    it("should contain button add a Question" , function(){
+        setup();
+        const btn = screen.getByRole("button" , { name : "Ajouter une question" })
+        expect(btn).toBeInTheDocument();
+    })
+
+    it("should contain btn add a Question disabled", function(){
+        setup();
+        const btn = screen.getByRole("button" , { name : "Ajouter une question" })
+        expect(btn).toBeDisabled()
+    })
+
 
 })
