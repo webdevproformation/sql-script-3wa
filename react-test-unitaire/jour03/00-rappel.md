@@ -93,3 +93,24 @@ expect(valueReturned).toBe("1.2 €")
 ```
 
 
+
+```ts
+
+const a : string = "hello"; 
+
+function toto() : string
+{
+    return "toto"; 
+}
+
+// fonction GENERIC
+const titi :Array<T> = ( a : T , b : T ) => {
+
+
+} 
+
+
+titi (1,2)
+titi ("a", "b")
+
+```
