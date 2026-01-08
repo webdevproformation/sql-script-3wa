@@ -9,4 +9,10 @@ export namespace PollModel{
         id : string ;
         title : string ; 
     }
+
+    export type Form = {
+        pollTitle : string ;
+        questions : Array<Question>
+    }
+
 }
